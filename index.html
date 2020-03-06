@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css">
+</head>
+<body>
+    <section class="todo-app" id="todo-app">
+        <div class="main"> 
+            <h1>Todo Application</h1>
+            <div class="inputText">
+                <input type="text" placeholder="Enter task" maxlength="43">
+            </div>            
+            <ul class="Spisok" id="Spisok">
+            </ul>
+            <div class="buttons">
+                <button id="save">Save all</button>
+                <button id="clear">Delete everything</button>
+                <button id="info" onclick="show('block')">Personal information</button>     
+            </div>  
+            <div id="filter" onclick="show('none')"></div>
+            <div id="modal" class="modal">
+                <h1>Информация</h1>
+                <p>Жабриков Евгений Сергеевич</p>
+            </div>
+                
+        </div>        
+    </section>
+
+    <script src="./js/script.js"></script>
+</body>
+</html>
