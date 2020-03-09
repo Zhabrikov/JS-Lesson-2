@@ -36,7 +36,11 @@ function deleteTodo(){
 function crossedOutTodo(){
     for(let span of crossedOutText){
         span.addEventListener('click', function(){  
-                span.style.textDecoration = 'line-through';
+                // span.style.textDecoration = 'line-through';
+                span.classList.add('textCrossedOut');
+                //TODO add toggle
+
+            
         });        
     }
 };
@@ -53,14 +57,14 @@ function loadTodo(){
 
 
 inputData.addEventListener('keypress', function(keyPressed){
-    if(this.value != ""){   
+    if(this.value != "" && this.value.trim() !== ""){   
         if(keyPressed.which === 13){
             var newLi = document.createElement('li');
             var leftSpan = document.createElement('span');
 
             var textSpan = document.createElement('span');
             textSpan.className = "textSpan";
-            textSpan.style.textDecoration = 'none';
+            // textSpan.style.textDecoration = 'none';
 
             var dateSpan = document.createElement('span');
             dateSpan.className = "dateSpan";
@@ -104,7 +108,5 @@ function show(state){
 
 
 deleteTodo();
-
-loadTodo();
-
 crossedOutTodo();
+loadTodo();

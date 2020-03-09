@@ -61,6 +61,11 @@ li{
     cursor: pointer;
 }
 
+.textCrossedOut{
+    text-decoration: line-through;
+    text-decoration-color: rgb(152,15,0);;
+}
+
 .dateSpan{
     display: flex;
     flex-direction: column;
