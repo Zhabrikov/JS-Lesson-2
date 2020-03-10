@@ -59,6 +59,7 @@ li{
 
 .textSpan{
     cursor: pointer;
+    user-select: none;
 }
 
 .textCrossedOut{

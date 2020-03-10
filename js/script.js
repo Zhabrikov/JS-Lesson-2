@@ -7,7 +7,6 @@ var clearBtn = document.getElementById('clear');
 var deleteSvg = document.getElementsByClassName('svgSpan');
 var crossedOutText = document.getElementsByClassName('textSpan');
 console.log(crossedOutText);
-// console.log(spans);
 
 
 var d = new Date();
@@ -24,36 +23,28 @@ var currentDate = (day + "." + month + "." + year);
 
 // addEventListener - Обработчик события с последующим вызовом функции
 
-function deleteTodo(){
-    for(let span of deleteSvg){
-        span.addEventListener('click', function(){
-            span.parentElement.remove();
-            event.stopPropagation();
-        });
-    }
+function deleteTodo(svgSpan){    
+    svgSpan.parentElement.remove();
+    event.stopPropagation();    
 };
 
-function crossedOutTodo(){
-    for(let span of crossedOutText){
-        span.addEventListener('click', function(){  
-                // span.style.textDecoration = 'line-through';
-                span.classList.add('textCrossedOut');
-                //TODO add toggle
-
-            
-        });        
-    }
+function toggleCrossed(textSpan){
+    textSpan.classList.toggle('textCrossedOut');
 };
 
 
 function loadTodo(){
     if(localStorage.getItem('MyApplicationTodo')){
         ulSpisok.innerHTML = localStorage.getItem('MyApplicationTodo');
+    };  
+    for(let span of deleteSvg){
+        span.addEventListener('click', function(){deleteTodo(span)});
     }
-    deleteTodo();
-    crossedOutTodo();
-    
+    for(let span of crossedOutText){
+        span.addEventListener('click', function(){toggleCrossed(span)});
+    }
 };
+
 
 
 inputData.addEventListener('keypress', function(keyPressed){
@@ -63,8 +54,8 @@ inputData.addEventListener('keypress', function(keyPressed){
             var leftSpan = document.createElement('span');
 
             var textSpan = document.createElement('span');
+            textSpan.addEventListener('click', function(){toggleCrossed(textSpan)});
             textSpan.className = "textSpan";
-            // textSpan.style.textDecoration = 'none';
 
             var dateSpan = document.createElement('span');
             dateSpan.className = "dateSpan";
@@ -73,6 +64,8 @@ inputData.addEventListener('keypress', function(keyPressed){
             var svgSpan = document.createElement('span');
             svgSpan.className = "svgSpan";
             svgSpan.innerHTML = '<i class="fas fa-trash-alt"></i>';
+            svgSpan.addEventListener('click', function(){deleteTodo(svgSpan)});
+           
 
             var newInfo = this.value;
             this.value = "";
@@ -84,11 +77,8 @@ inputData.addEventListener('keypress', function(keyPressed){
                         textSpan.append(newInfo);
                     leftSpan.append(dateSpan);
                 newLi.append(svgSpan);
-        }
-        deleteTodo();        
-        crossedOutTodo();
-        
-    }
+        }  ;      
+    };
 });
 
 
@@ -104,9 +94,6 @@ clearBtn.addEventListener('click', function(){
 function show(state){
     document.getElementById('modal').style.display = state;
     document.getElementById('filter').style.display = state;
-}
+};
 
-
-deleteTodo();
-crossedOutTodo();
 loadTodo();
